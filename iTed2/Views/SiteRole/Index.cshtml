@@ -1,0 +1,76 @@
+﻿@model List<iTed2.Models.iMemberProfile>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "SiteRole";
+    var count = 0;
+    int currentPage = ViewBag.page;
+    IPagedList<iTed2.Models.iMemberProfile> memberProfileList = Model.ToPagedList(currentPage, 5);
+}
+
+<div id="manageList-div">
+    <h1>@ViewBag.Title</h1>
+    <div class="role-view">
+        <table class="table table-striped">
+
+            <tr>
+                <th>序號</th>
+                <th>照片</th>
+                <th>姓名</th>
+                <th colspan="2">權限</th>
+            </tr>
+
+            @foreach (var item in memberProfileList)
+            {
+                <tr>
+                    <td style="width:10%">
+                        @Html.DisplayFor(modelItem => item.MemberId)
+                    </td>
+                    <td style="width:10%">
+                        <img src=@item.Picture alt=@item.Name />
+                    </td>
+                    <td style="width:20%">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+
+                    @foreach (string roleItem in ViewBag.RoleCollection)
+                    {
+                        if (roleItem == item.Role)
+                        {
+                            <td style="width:10%">
+                                @Html.RadioButton("roleRadioBtn" + @count++ / 2, roleItem, true, new { onchange = string.Format("changeRole(this, '{0}');", item.AspNetUsersId), @class = "radioBtn" })
+                                @Html.Label(roleItem)
+                            </td>
+                        }
+                        else
+                        {
+                            <td style="width:10%">
+                                @Html.RadioButton("roleRadioBtn" + @count++ / 2, roleItem, new { onchange = string.Format("changeRole(this, '{0}');", item.AspNetUsersId), @class = "radioBtn" })
+                                @Html.Label(roleItem)
+                            </td>
+                        }
+                    }
+                </tr>
+            }
+
+        </table>
+
+        <div class="pagelistRole">
+            @Html.PagedListPager(memberProfileList, page => Url.Action("Index", new { page = page }))
+        </div>
+    </div>
+</div>
+
+<script>
+    function changeRole(thisElement, AspnetUserId) {
+        $.ajax({
+            url: 'https://localhost:44301/SiteRole/ChangeRole',
+            type: 'GET',
+            data: { role: thisElement.value, aspNetUserId: AspnetUserId },
+            success: function () {
+                console.log("sucess");
+            },
+            error: function () { alert('error') }
+        })
+    }
+</script>

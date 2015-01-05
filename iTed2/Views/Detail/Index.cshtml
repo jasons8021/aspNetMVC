@@ -1,0 +1,156 @@
+﻿@model IEnumerable<iTed2.Models.VideoDescription>
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "上映影片 : " + ViewBag.title;
+}
+<div class="xmas">
+        @if (ViewBag.videoUrl != null)
+        {
+            <div class="title">
+                <h2>
+                    @ViewBag.title
+                </h2>
+            </div>
+            <div class="xmas-video">
+                <hr />
+                <iframe src=@ViewBag.videoUrl scrolling="no" seamless="seamless" id="iframe-src" style="width:100%; height:481px;"></iframe>
+                <hr />
+            </div>
+            @*<div class="description">
+                <div style="width: 60%; text-align: left; margin-left: 10px; float: left;">
+                    <p>@ViewBag.description</p>
+                </div>
+                <div class="unit">
+                    <img src="~/Image/star0.png" class="pic1">
+                    <img src="~/Image/star2.png" class="pic2">
+                </div>
+                <div style="clear:both;"></div>
+                <hr />
+            </div>*@
+            @*using (Ajax.BeginForm("_DescriptionList", "Detail", null, new AjaxOptions { UpdateTargetId = "descriptionLists", HttpMethod = "Post" }))
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="Id" value='@ViewBag.videoId'>
+                <input type="hidden" name="Title" value='@ViewBag.title'>
+                <input type="hidden" name="Description" value='@ViewBag.description'>
+                <input type="hidden" name="VideoUrl" value='@ViewBag.videoUrl'>
+                <input id="memberDescription" type="hidden" name="memberDescription">
+                <div style="width:100%;margin:auto;">
+                    <div style="width:100%">
+                        @Html.TextArea("memberDescriptionText", null, new { placeholder = "請輸入評語", style = "width:100%;" })
+                        <div style="float: right; margin-right: 5px; margin-top: 20px;">
+                            <button id="submitDescriptionBtn" type="submit" class="btn btn-primary">上傳評語</button>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+                @Html.ValidationMessageFor(model => model.FirstOrDefault().MemberDescription, "", new { @class = "text-danger" })
+            }
+            <div id="descriptionLists">
+                @Html.Action("_DescriptionList", "Detail", new { videoId = @ViewBag.videoId });
+            </div>*@
+        }
+    <!-- Let it snow! -->
+    <canvas id="xmasCanvas"></canvas>
+</div>
+
+<script src="~/Scripts/VideoJS.js"></script>
+<script>
+    $('#submitDescriptionBtn').click(function () {
+        var des = $('#memberDescriptionText').val();
+        $('#memberDescription').val(des);
+        $('#memberDescriptionText').val("");
+    });
+   
+    
+    $(function () {
+        {
+            var undefined;
+            checkMyFavorite(undefined, undefined, function () {
+                var e = $(".pic1", $(".unit"));
+                var target = e.parent().find(".pic2");
+                if (!target.hasClass("curr")) {
+                    target.addClass("curr")
+                }
+            });
+        }
+
+        $(".pic1", $(".unit")).bind("click", function () {
+            var o = $(this);
+            var target = o.parent().find(".pic2");
+            var check = false;
+            checkMyFavorite(function () {
+                console.log("add");
+                insertLikeInDB(function () {
+                    if (!target.hasClass("curr")) {
+                        target.addClass("curr")
+                    }
+                });
+            }, function () {
+                removeLikeInDB(function () {
+                    if (target.hasClass("curr")) {
+                        target.removeClass("curr")
+                    }
+                });
+            });
+            
+        });
+    });
+
+    function removeLikeInDB(call) {
+        $.ajax({
+            type: 'GET',
+            url: 'https://localhost:44301/api/iTed2/removeFavorite?aspId=' + '@User.Identity.GetUserId()' + '&videoId=' + '@ViewBag.videoId',
+            contentType: 'application/json',
+            success: function (response) {
+                
+                if (typeof (call) != "undefined") {
+                    call();
+                }
+            },
+            error: function (response) {
+                
+            }
+        });
+    }
+    function insertLikeInDB(call) {
+        $.ajax({
+            type: 'GET',
+            url: 'https://localhost:44301/api/iTed2/addFavorite?aspId=' + '@User.Identity.GetUserId()' + '&videoId=' + '@ViewBag.videoId',
+            contentType: 'application/json',
+            success: function (response) {
+               
+                if (typeof (call) != "undefined") {
+                    call();
+                }
+            },
+            error: function (response) {
+               
+            }
+        });
+    }
+
+    function checkMyFavorite(call1, call2, call3) {
+        $.ajax({
+            type: 'GET',
+            url: 'https://localhost:44301/api/iTed2/checkFavorite?aspId=' + '@User.Identity.GetUserId()' + '&videoId=' + '@ViewBag.videoId',
+            contentType: 'application/json',
+            success: function (response) {
+                if ((typeof (call1) != "undefined") && (response == false)) {
+                    call1();
+                } else if ((typeof (call2) != "undefined") && (response == true)) {
+                    call2();
+                }
+                if (typeof (call3) != "undefined") {
+                    if (response) {
+                        call3();
+                    }
+                }
+            },
+            error: function (response) {
+               
+            }
+        });
+    }
+</script>
+<script src="~/Scripts/xmas.js"></script>

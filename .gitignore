@@ -29,6 +29,7 @@ packages/*
 *.opensdf
 *.unsuccessfulbuild
 *.csproj
+*.sln
 ipch/
 [Oo]bj/
 [Bb]in

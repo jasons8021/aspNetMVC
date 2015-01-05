@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNet.Identity
+@using Microsoft.Owin.Security
+
+<script src="~/Scripts/MenuBarJS.js"></script>
+<script>
+    var userId = '@User.Identity.GetUserId()';
+    var timerState = "";
+</script>
+
+@{
+    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+    if (Request.IsAuthenticated)
+    {
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Get, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <ul class="nav navbar-nav navbar-right">
+                <li> 
+                    <p class="apValue">
+                        <label id="ap" style="font-weight: normal;"></label>
+                        <label id="maxAp" style="font-weight: normal;"></label>
+                    </p>
+                </li>
+                <li>
+                    <a id="userName" href="@Url.Action("Index", "Manage", new { title = "Manage", style = "font-size:18px" })"></a>
+                    <script>
+                        getUserInfo(userId);
+                    </script>
+                </li>
+                <li><a href="#" onclick="Log_Out()">登出</a></li>
+            </ul>
+        }
+    }
+    else
+    {
+        using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = "" }))
+        {
+            @Html.AntiForgeryToken()
+            <div id="socialLoginList" style="text-align:right">
+                <p>
+                    @foreach (AuthenticationDescription p in loginProviders)
+                    {
+                        if (p.AuthenticationType == "Facebook")
+                        {
+                            <button type="submit" class="btn btnLogin btnFacebookBGC" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="使用 @p.Caption 帳戶登入"> <img src="~/Image/FaceBook_Logo.jpg" width="35" height="35" style="font-size:x-large;" /> Facebook 登入</button>
+                        }
+                        else if (p.AuthenticationType == "Google")
+                        {
+                            <button type="submit" class="btn btnLogin btnGoogleBGC" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="使用 @p.Caption 帳戶登入"> <img src="~/Image/Google_Logo.jpg" width="35" height="35" style="font-size:x-large;" /> Google 登入</button>
+                        }
+                        else
+                        { <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="使用 @p.Caption 帳戶登入"> @p.AuthenticationType </button> }
+                    }
+                    @*<button id="webLoginBtn" type="button" class="btn btnLogin btnWebLogin">登入</button>*@
+                    @*<button id="registerBtn" type="button" class="btn btnLogin btnRegister">註冊會員</button>*@
+                </p>
+            </div>
+        }
+    }
+}

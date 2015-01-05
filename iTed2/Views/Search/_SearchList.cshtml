@@ -1,0 +1,109 @@
+﻿@model IEnumerable<iTed2.Models.Category>
+@using PagedList;
+@using PagedList.Mvc;
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "查詢";
+    int currentPage = ViewBag.page;
+    if (ViewBag.TedList != null)
+    {
+        IPagedList<Google.Apis.Customsearch.v1.Data.Result> searchResultList = ViewBag.TedList.ToPagedList(currentPage, 5);
+    }
+    else
+    {
+        IPagedList<Google.Apis.Customsearch.v1.Data.Result> searchResultList = null;
+    }
+}
+
+@if (ViewBag.TedList != null)
+{
+    foreach (var x in searchResultList)
+    {
+        <article>
+            <h3>
+                <div id="txtVideoBtn" link="@Url.Action("Click", "Search", new { title = @x.Title, description = @x.Snippet, videoUrl = @x.Link, categoryId = @ViewBag.categoryId, thumbnailUrl = @x.Pagemap["cse_image"][0]["src"] })" class="link-text" style="color:black;" onclick="checkAP(this)">@x.Title</div>
+            </h3>
+            <div class="media">
+                <div style="width:150px;float:left;">
+                    <div id="imgVideoBtn" link="@Url.Action("Click", "Search", new { title = @x.Title, description = @x.Snippet, videoUrl = @x.Link, categoryId = @ViewBag.categoryId, thumbnailUrl = @x.Pagemap["cse_image"][0]["src"] })" onclick="checkAP(this)" class="searchIMG">
+                        <img id="videoThumbnail" alt="" src=@x.Pagemap["cse_image"][0]["src"] style="cursor:pointer;">
+                    </div>
+                </div>
+                <div style="margin-left:160px;">
+                    <div style="text-align:left;">
+                        @x.Snippet
+                    </div>
+                </div>
+            </div>
+        </article>
+    }
+}
+else
+{
+    if (ViewBag.SearchClick)
+    {
+        <h3 class="h7 m4" style="text-align:center;">
+            找不到關於：@ViewBag.Keyword 的影片
+        </h3>
+    }
+}
+
+
+<script>
+    var CategoryName = '@ViewBag.CategoryName';
+    var isAuth = @User.Identity.IsAuthenticated;
+
+    function checkAP(e) {
+        e=$(e);
+        getCurrentAP(function (v) {
+            ap = v;
+
+            getIsAuth(function() {
+                if( parseInt(ap) >= 10)
+                {
+                    location.href = e.attr("link");
+                }
+                else
+                {
+                    alert('體力不足');
+                }
+            })
+        });
+    }
+
+    function getCurrentAP(call) {
+        $.ajax({
+            type: 'GET',
+            url: 'https://localhost:44301/api/iTed2/getCurrentAP?aspId=' + '@User.Identity.GetUserId()',
+            contentType: 'application/json',
+            success: function (response) {
+                if ((typeof (call) != "undefined")) {
+                    ap = response;
+                    return call(ap);
+                }
+            },
+            error: function (response) {
+
+            }
+        });
+    }
+
+    function getIsAuth(call) {
+        $.ajax({
+            type: 'GET',
+            url: 'https://localhost:44301/api/iTed2/getIsAuth',
+            contentType: 'application/json',
+            success: function (response) {
+                if (response) {
+                    return call();
+                }
+                else {
+                    alert('請先登入');
+                }
+            },
+            error: function (response) {
+
+            }
+        });
+    }
+</script>

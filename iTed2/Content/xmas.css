@@ -1,0 +1,411 @@
+﻿@import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
+
+html, body {
+    background: #F3F3F3;
+    background-color: red;
+    background: url('../Image/background-dark-texture.jpg') repeat;
+}
+
+ul.nav.navbar-nav li a {
+    font-size: 25px;
+}
+
+.contentContainer {
+    position:absolute;
+    width:100%;
+}
+
+div.contentContainer footer {
+    text-align:center;
+    font-size:25px;
+    color:#fff;
+}
+
+.btnLogin {
+    color: #fff;
+    margin-top: 7px;
+    margin-bottom: -10px;
+    padding-top: 1px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    width: 142px;
+    font-family: "Times New Roman","Bodoni","Garamond","Minion Web","ITC Stone Serif","MS Georgia","Bitstream Cyberbit";
+}
+
+.btnGoogleBGC {
+    background: #4B8BF5;
+}
+
+.btnFacebookBGC {
+    background: #3b5998;
+}
+
+.apValue {
+    margin: auto;
+    padding: 15px; 
+    display: block; 
+    line-height: 20px; 
+    font-size: 25px; 
+    color: #999;
+}
+
+.memberDescriptionDiv {
+    background-color: #EEEEEE;
+    margin: 20px;
+    width: 96%;
+}
+
+.description-userDiv {
+    font-family: 微軟正黑體;
+    margin-left: 65px;
+    margin-top: 5px;
+}
+
+div.unit{
+    width:45px;
+    float: right; 
+    margin-right: 30px
+}
+
+div.unit > img.pic1{
+    position:relative;
+    width: 100%;
+    top:0;
+    left:0;
+    z-index:1;
+}
+div.unit > img.pic2{
+    position:relative;
+    width: 100%;
+    top:-43px;
+    left:0px;
+    z-index:0;
+    opacity:0;
+}
+
+div.unit > img.pic2.curr{
+    opacity:1;
+}
+
+div.link-text{
+    color:#000;
+    cursor:pointer;
+}
+
+div.link-text:hover{
+    color:rgba(56, 52, 52, 0.54);
+    text-decoration:underline;
+}
+.row.card-container{
+    position:absolute;
+    top: 20px;
+    width: 70%;
+    left: 16%;
+    background-color:#eee;
+    padding-top:50px;
+    padding-bottom:70px;
+    margin-top:40px;
+    border-radius:10px;
+    opacity:0.94;
+}
+
+.row.card-container:hover{
+    background-color:#eee;
+    opacity: 1;
+}
+
+.card{
+    position: relative;
+    float: left;
+    padding: 10px;
+    width: 32%;
+    margin-left: 1%;
+    background-color: #D8D8D8;
+    padding-bottom:25px;
+}
+
+.card:hover{
+    background-color:#C0C0C0 ;
+}
+.card:hover > .video-img{
+    opacity:1;
+}
+.card > .video-img{
+    position:relative;
+    float:left;
+    width:100%;
+    cursor:pointer;
+    opacity:0.6;
+}
+
+.card > .video-img > img{
+    width:100%;
+}
+
+
+.card > .video-title{
+    position:relative;
+    float:left;
+    width:100%;
+}
+
+.card > .video-title > h1{
+    text-align:left;
+}
+
+.card > .video-content{
+    padding-top:5px;
+    position:relative;
+    float:left;
+    width:100%;
+    color:#686868;
+}
+
+.card > .video-content:hover{
+    color:#000;
+}
+
+@media screen and (max-width:950px) and (min-width:500px){
+    
+    .card{
+        position: relative;
+        float: left;
+        padding: 10px;
+        width: 60%;
+        margin-left: 20%;
+        margin-right: 20%;
+        background-color: #D8D8D8;
+        margin-top:20px;
+    }
+}
+
+@media screen and (max-width:499px){
+    
+    .card{
+        position: relative;
+        float: left;
+        padding: 10px;
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        background-color: #D8D8D8;
+        margin-top:20px;
+    }
+}
+
+.detailView {
+    padding: 20px 20px 20px 20px;
+    box-shadow: 0px 2px 20px 2px rgba(0, 0, 0, 0.11);
+    min-height: 466px;
+    overflow: auto;
+    background: #676464;
+    z-index: 2;
+}
+
+.searchIMG > img{
+    width:100%;
+}
+
+.xmas {
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+
+.xmas #xmasCanvas {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	z-index: 2;
+    overflow: auto;
+}
+
+.xmas .title {
+    position: absolute;
+    text-align: center;
+    z-index: 3;
+    width: 96%;
+    color: white;
+}
+
+.xmas .xmas-title > div {
+	font-family: "微軟正黑體";
+	color: #ffffff;
+	font-size: 40px;
+	line-height: 0.5em;
+	margin-bottom: 5px;
+}
+
+.xmas .xmas-title > h2 {
+	margin-top: 10px;
+}
+
+.xmas .xmas-video {
+    width: 96%;
+    position: absolute;
+    top: 70px;
+    z-index: 5;
+    padding-left: 3px;
+}
+
+.xmas .description {
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+    z-index: 3;
+    text-align: center;
+}
+.xmas .description > div {
+	font-family: "quimby-mayoral", sans-serif;
+	color: #ffffff;
+	font-size: 40px;
+	margin-bottom: 10px;
+}
+
+.xmas .description .gc-link {
+    display: inline-block;
+    font-family: "brandon-grotesque", sans-serif;
+    font-size: 24px;
+    color: #ffffff;
+    transition: 400ms ease;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.xmas .description .gc-link:hover {
+	color: #1cff94;
+}
+
+
+/* Search Page*/
+.searchPageContainer {
+    position:absolute;
+    top:0px;
+    width:100%;
+}
+
+/*Search Button CSS*/
+.searchBtnContainer {
+    position: relative;
+    margin-top: 1%;
+    margin-left: 23%;
+}
+
+.search-box {
+    transition: width 0.6s, border-radius 0.6s, background 0.6s, box-shadow 0.6s;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    background: rgb(235, 235, 235);
+}
+
+.search-box + label .search-icon {    
+    color: black;
+}
+.search-box:hover {
+    color: white;
+    background: rgb(200, 200, 200);
+    box-shadow: 0 0 0 5px rgb(61, 71, 82);
+}
+.search-box:hover + label .search-icon {
+    color: white;
+}
+
+.search-box:focus {
+    transition: width 0.6s cubic-bezier(0,1.22,.66,1.39), border-radius 0.6s, background 0.6s;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding-left: 15px;
+    cursor: text;
+    width: 300px;
+    max-width: 1000px;
+    background: rgb(235, 235, 235);
+    color: black;
+}
+.search-box:focus + label .search-icon {
+    color: black;
+}
+
+.search-icon {
+  position: relative;
+  left: -30px;
+  color: white;
+  cursor: pointer;
+}
+
+/********************/
+/*Search Result List CSS*/
+.featureBlock {
+  width: 700px;
+  height: 400px;
+  margin: 0 auto;
+  box-shadow: 5px 5px 50px 20px rgba(0,0,0,.5);
+  animation-name: fadeIn;
+  animation-duration: .8s;
+}
+
+.feature {
+  float: left;
+  color: white;
+}
+
+.feature_aside {
+  width: 25%;
+  box-sizing: border-box;
+}
+
+.feature_main {
+  width: 75%;
+  box-sizing: border-box;
+}
+
+.feature-hd {
+  padding: 30px 20px;
+  height: 100px;
+  box-sizing: border-box;
+}
+
+.feature-bd {
+  padding: 30px;
+  height: 300px;
+  box-sizing: border-box;
+}
+
+.feature_main .feature-hd {
+  background: rgba(223,63,89,.8);
+  color: #f3beb4;
+}
+
+.feature_main .feature-bd {
+  background: rgba(220,122,60,.6);
+}
+
+.feature_aside .feature-hd {
+  background: rgba(42,38,105,.8);
+  color: #766A9C;
+  font-size: 24px;
+  font-family: Satisfy;
+}
+
+.feature_aside .feature-bd {
+  background: rgba(87,75,115,.6);
+}
+
+.globalNav > * > * {
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all .5s linear;
+}
+
+.globalNav > * > *:hover {
+  text-decoration: underline;
+}
+
+.globalNav > *+*{
+  margin-top: 30px;
+}
+/************************/

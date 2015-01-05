@@ -1,0 +1,62 @@
+﻿@model ILookup<iTed2.Models.Category, iTed2.Models.MyFavorite>
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "我的最愛";
+}
+
+<div class="all-mytedView">
+    <div class="TreeView">
+        @if (Model.Count() != 0)
+        {
+            <ul id="menu1" class="example_menu">
+                @foreach (var item in Model)
+                {
+                    <li class="title-marginTop">
+                        <a class="treeView-title" href="#">@item.Key.CategoryName (@item.Count())</a>
+                        <ul>
+                            @foreach (var myLike in item)
+                            {
+                                <li>
+                                    <a id="videoHref" href="@Url.Action("Click", "Search", new { title = @myLike.Video.Title, description = @myLike.Video.Description, videoUrl = @myLike.Video.VideoUrl, categoryId = @myLike.Video.CategoryId, thumbnailUrl = @myLike.Video.ThumbnailUrl })" onclick="return checkAP()">
+                                        @myLike.Video.Title
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <div class="textAlert">
+                <span id="noViewRecord">@ViewBag.userName, 您尚未加入任何影片到收藏 </span>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    var ap = @ViewBag.APValue;
+    $(document).ready(function () {
+        $('#menu1  li a').click(function () {
+            $(this).parent().children('ul').slideToggle('medium').toggleClass('collapsed').toggleClass('expanded');
+            $(this).parent().children('div').slideToggle('medium').toggleClass('collapsed').toggleClass('expanded');
+        });
+    });
+
+    function checkAP() {
+        if( ap >= 10)
+        {
+            ap-=10;
+            return true;
+        }
+        else
+        {
+            alert('體力不足');
+            return false;
+        }
+    }
+</script>
+<script src="~/Scripts/VideoJS.js"></script>
+

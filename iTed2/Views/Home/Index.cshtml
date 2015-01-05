@@ -1,0 +1,79 @@
+﻿@model List<iTed2.Models.Video>
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "課程範例首頁";
+}
+<div class="row card-container">
+    @foreach (var item in Model)
+    {
+        <div class="card">
+            <div class="video-title">
+                <h1>@item.Title</h1>
+            </div>
+            <div class="video-img" onclick="checkAP(this);" link="@Url.Action("Click", "Search", new { title = @item.Title, description = @item.Description, videoUrl = @item.VideoUrl, categoryId = @item.CategoryId, thumbnailUrl = @item.ThumbnailUrl })">
+                <img src="@item.ThumbnailUrl">
+            </div>
+            <div class="video-content">
+                <h3>@item.Description</h3>
+            </div>
+        </div>
+    }
+</div>
+<script>
+    function checkAP(e) {
+        e = $(e);
+        getCurrentAP(function (v) {
+            ap = v;
+
+            getIsAuth(function () {
+                if (parseInt(ap) >= 10) {
+                    location.href = e.attr("link");
+                }
+                else {
+                    alert('體力不足');
+                }
+            })
+        });
+    }
+
+    function getCurrentAP(call) {
+        $.ajax({
+            type: 'GET',
+            url: 'https://localhost:44301/api/iTed2/getCurrentAP?aspId=' + '@User.Identity.GetUserId()',
+            contentType: 'application/json',
+            success: function (response) {
+                if ((typeof (call) != "undefined")) {
+                    ap = response;
+                    return call(ap);
+                }
+            },
+            error: function (response) {
+
+            }
+        });
+    }
+
+    function getIsAuth(call) {
+        $.ajax({
+            type: 'GET',
+            url: 'https://localhost:44301/api/iTed2/getIsAuth',
+            contentType: 'application/json',
+            success: function (response) {
+                if (response) {
+                    return call();
+                }
+                else {
+                    alert('請先登入');
+                }
+            },
+            error: function (response) {
+
+            }
+        });
+    }
+</script>
+<script src="~/Scripts/xmas.js"></script>
+@section DescriptionMeta
+{
+    <meta name="description" content="德德的雲端入門MVC是一個由北科大資工系(所)學生所製成的網站，其內容遵循一哥上課內容改編而成。該網站是以ASP.Net MVC作為技術平台，並集結了多項技術主題：JavaScript、CSS、FB、Google登入、應用Google CustomSearch進行相關搜尋、資料庫設計。一哥藉由多元化的上課方式和優秀的助教團隊來協助學生獨力完成網站的製作，使學生能夠更加明白雲端產業之重要性！" />
+}
