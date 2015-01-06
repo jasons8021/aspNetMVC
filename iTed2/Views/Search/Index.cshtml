@@ -80,6 +80,10 @@
     var CategoryName = '@ViewBag.CategoryName';
     var isAuth = @User.Identity.IsAuthenticated;
 
+    $(function () {
+        $('#search-box').val("");
+    });
+
     function checkAP(e) {
         e=$(e);
         getCurrentAP(function (v) {
