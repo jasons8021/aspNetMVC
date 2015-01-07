@@ -4,55 +4,55 @@
     ViewBag.Title = "Google Custom Search 範例";
 }
 
-<div class="searchPageContainer">
+<div class="search-container">
     <div>
-        <div class="searchBtnContainer">
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-            @Html.TextBox("CategoryName", null, new { id="search-box", @class = "search-box"})
-            <label for="search-box"><span class="glyphicon glyphicon-search search-icon"></span></label>
-            @Html.ValidationMessageFor(model => model.FirstOrDefault().CategoryName, "", new { @class = "text-danger" })
-        }
+        <div class="searchBtn-container">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.TextBox("CategoryName", null, new { id = "search-box", @class = "search-box" })
+                <label for="search-box"><span class="glyphicon glyphicon-search search-icon"></span></label>
+                @Html.ValidationMessageFor(model => model.FirstOrDefault().CategoryName, "", new { @class = "text-danger" })
+            }
         </div>
         @if (ViewBag.TedList != null)
         {
-            <div class="articleContainer">
+            <div class="article-container">
                 @foreach (var x in ViewBag.TedList)
                 {
-                @*<div class="featureBlock">
-                        <div class="feature feature_aside">
-                            <div class="feature-hd">
+                    @*<div class="featureBlock">
+                            <div class="feature feature_aside">
+                                <div class="feature-hd">
 
+                                </div>
+                            </div>
+                            <div class="feature feature_main">
+                                <div class="feature-hd">
+
+                                </div>
+                                <div class="feature-bd">
+
+                                </div>
+                            </div>
+                        </div>*@
+
+                    <article>
+                        <div class="video-title">
+                            <div id="txtVideoBtn" link="@Url.Action("Click", "Search", new { title = @x.Title, description = @x.Snippet, videoUrl = @x.Link, categoryId = @ViewBag.categoryId, thumbnailUrl = @x.Pagemap["cse_image"][0]["src"] })" class="link-text" style="color:black;" onclick="checkAP(this)">@x.Title</div>
+                        </div>
+                        <div class="row-container">
+                            <div class="video-img">
+                                <div id="imgVideoBtn" link="@Url.Action("Click", "Search", new { title = @x.Title, description = @x.Snippet, videoUrl = @x.Link, categoryId = @ViewBag.categoryId, thumbnailUrl = @x.Pagemap["cse_image"][0]["src"] })" onclick="checkAP(this)" class="searchIMG">
+                                    <img id="videoThumbnail" alt="" src=@x.Pagemap["cse_image"][0]["src"] style="cursor:pointer;">
+                                </div>
+                            </div>
+                            <div class="video-content">
+                                <div style="text-align:left;">
+                                    @x.Snippet
+                                </div>
                             </div>
                         </div>
-                        <div class="feature feature_main">
-                            <div class="feature-hd">
-
-                            </div>
-                            <div class="feature-bd">
-
-                            </div>
-                        </div>
-                    </div>*@
-
-                <article>
-                    <div class="video-title">
-                        <div id="txtVideoBtn" link="@Url.Action("Click", "Search", new { title = @x.Title, description = @x.Snippet, videoUrl = @x.Link, categoryId = @ViewBag.categoryId, thumbnailUrl = @x.Pagemap["cse_image"][0]["src"] })" class="link-text" style="color:black;" onclick="checkAP(this)">@x.Title</div>
-                    </div>
-                    <div class="row-container">
-                        <div class="video-img">
-                            <div id="imgVideoBtn" link="@Url.Action("Click", "Search", new { title = @x.Title, description = @x.Snippet, videoUrl = @x.Link, categoryId = @ViewBag.categoryId, thumbnailUrl = @x.Pagemap["cse_image"][0]["src"] })" onclick="checkAP(this)" class="searchIMG">
-                                <img id="videoThumbnail" alt="" src=@x.Pagemap["cse_image"][0]["src"] style="cursor:pointer;">
-                            </div>
-                        </div>
-                        <div class="video-content">
-                            <div style="text-align:left;">
-                                @x.Snippet
-                            </div>
-                        </div>
-                    </div>
-                </article>
+                    </article>
                 }
             </div>
         }
