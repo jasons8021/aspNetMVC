@@ -15,7 +15,7 @@ namespace iTed2.Controllers
     [Authorize]
     public class DetailController : Controller
     {
-        const int PageSize = 4;
+        const int PageSize = 5;
         const int consumedAP = 10;
         // GET: Detail
         public ActionResult Index()

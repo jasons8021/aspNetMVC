@@ -1,25 +1,28 @@
 ﻿@model IPagedList<iTed2.Models.VideoDescription>
 @using PagedList;
 @using PagedList.Mvc;
-    @if (Model.Count != 0)
-    {
-        foreach (var item in Model)
+
+@if (Model.Count != 0)
+{
+    <div class="comment-article-container">
+        @foreach (var item in Model)
         {
-            <article class="comment">
-                <div class="img-userDiv">
-                    <img src="@item.iMember.Picture" alt="@item.iMember.Name" class="img-user" />
-                </div>
-                <div class="description-userDiv">
-                    <div>
-                        @item.iMember.Name - @item.Date
-                    </div>
-                    <div>
-                        @item.MemberDescription
-                    </div>
-                </div>
-            </article>
-        }
-            <div class="pageList">
-                @Html.PagedListPager(Model, page => Url.Action("_DescriptionList", new { page = page, videoId = ViewBag.VideoId }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "descriptionLists" }))
+        <article>
+            <div class="img-userDiv">
+                <img src="@item.iMember.Picture" alt="@item.iMember.Name" class="img-user" />
             </div>
-    }
+            <div class="description-userDiv">
+                <div class="author">
+                    <h2>@item.iMember.Name - @item.Date</h2>
+                </div>
+                <div class="comment">
+                    @item.MemberDescription
+                </div>
+            </div>
+        </article>
+        }
+    </div>
+    <div class="pageList">
+        @Html.PagedListPager(Model, page => Url.Action("_DescriptionList", new { page = page, videoId = ViewBag.VideoId }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "descriptionLists" }))
+    </div>
+}

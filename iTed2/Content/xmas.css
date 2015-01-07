@@ -396,31 +396,55 @@ div.unit > img.pic2.curr {
 
 .comment-list-container {
     width: 55%;
+    height: 300px;
     margin:0px auto;
+}
+
+.comment-article-container {
+    width:100%;
+    height:100%;
     overflow:auto;
 }
 
-.comment-list-container > article {
-    background: #EEE;
-    margin: 20px;
-    width: 96%;
+comment-article-container::-webkit-scrollbar {
+    display: none;
 }
 
-.img-user {
-    vertical-align: middle;
-    width: 50px;
-    height: 50px;
+.comment-article-container > article {
+    margin: 10px 5px;
+    overflow: auto;
 }
 
-.img-userDiv {
+.comment-article-container article > .img-userDiv {
     float: left; 
-    margin: 5px
+    margin-top: 5px;
+    margin-left: 15px;
 }
 
-.description-userDiv {
-    font-family: 微軟正黑體;
-    margin-left: 65px;
-    margin-top: 5px;
+.img-userDiv > .img-user {
+    width: 70px;
+    height: 70px;
+}
+
+.comment-article-container article > .description-userDiv {
+    background: white;
+    color: #535353;
+    padding: 15px 15px 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 2px rgba(0,0,0,.3);
+    float: right;
+    width: 91%;
+}
+
+.description-userDiv > .author h2{
+    margin: 0px;
+    font: 20px/1em "droid serif",serif;
+    padding-bottom: 7px;
+    text-shadow: 0 2px 2px rgba(0,0,0,.2);
+}
+
+.description-userDiv > .comment {
+    font-size: 25px;
 }
 
 /**************/
