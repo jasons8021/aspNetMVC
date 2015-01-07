@@ -29,41 +29,41 @@ namespace iTed2.Controllers
         [HttpGet]
         public ActionResult Index(Video video)
         {
-            //iTed2Service service = new iTed2Service();
+            iTed2Service service = new iTed2Service();
 
-            //if (ModelState.IsValid)
-            //{
-            //    iMember member = service.GetMemberByAspId(User.Identity.GetUserId());
-            //    int apValue = member.APValue;
-            //    if (apValue >= consumedAP)
-            //    {
+            if (ModelState.IsValid)
+            {
+                iMember member = service.GetMemberByAspId(User.Identity.GetUserId());
+                int apValue = member.APValue;
+                if (apValue >= consumedAP)
+                {
 
-            //        service.ConsumeAp(member);
+                    service.ConsumeAp(member);
 
-            //        Video newVideo = new Video();
-            //        newVideo = service.SetVideo(video);
+                    Video newVideo = new Video();
+                    newVideo = service.SetVideo(video);
 
-            //        bool isFav = service.CheckIsFavorite(member.Id, 2);
-            //        ViewBag.IsFavorite = isFav;
+                    bool isFav = service.CheckIsFavorite(member.Id, 2);
+                    ViewBag.IsFavorite = isFav;
 
-            //        ViewBag.videoId = newVideo.Id;
-            //        ViewBag.title = newVideo.Title;
-            //        ViewBag.description = newVideo.Description;
-            //        ViewBag.videoUrl = newVideo.VideoUrl;
-            //    }
-            //    else
-            //    {
-            //        return RedirectToAction("Index", "Home");
-            //    }
-            //    //System.Diagnostics.Debug.WriteLine("video.Title : " + video.Title);
-            //    //System.Diagnostics.Debug.WriteLine("video.Description : " + video.Description);
-            //    //System.Diagnostics.Debug.WriteLine("video.VideoUrl : " + video.VideoUrl);
-            //}
+                    ViewBag.videoId = newVideo.Id;
+                    ViewBag.title = newVideo.Title;
+                    ViewBag.description = newVideo.Description;
+                    ViewBag.videoUrl = newVideo.VideoUrl;
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                //System.Diagnostics.Debug.WriteLine("video.Title : " + video.Title);
+                //System.Diagnostics.Debug.WriteLine("video.Description : " + video.Description);
+                //System.Diagnostics.Debug.WriteLine("video.VideoUrl : " + video.VideoUrl);
+            }
 
-            ViewBag.title = "傑森．波廷: 科技真能解決大問題? ";
-            ViewBag.description = "1969年，Buzz Aldrin 在月球上歷史性的一小步使人類在科技所能帶來可能性的時代跨越了一大步。科技的驚人力量曾用來解決我們的大問題。反觀今日，究竟發生了 ...";
-            ViewBag.videoUrl = "http://embed.ted.com/talks/lang/zh-tw/jason_pontin_can_technology_solve_our_big_problems.html";
-            ViewBag.videoId = 2;
+            //ViewBag.title = "傑森．波廷: 科技真能解決大問題? ";
+            //ViewBag.description = "1969年，Buzz Aldrin 在月球上歷史性的一小步使人類在科技所能帶來可能性的時代跨越了一大步。科技的驚人力量曾用來解決我們的大問題。反觀今日，究竟發生了 ...";
+            //ViewBag.videoUrl = "http://embed.ted.com/talks/lang/zh-tw/jason_pontin_can_technology_solve_our_big_problems.html";
+            //ViewBag.videoId = 2;
             return View();
         }
 
