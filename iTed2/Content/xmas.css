@@ -4,6 +4,8 @@ html, body {
     background: #F3F3F3;
     background-color: red;
     background: url('../Image/background-dark-texture.jpg') repeat;
+    min-height: 100%;
+    height:100%;
 }
 
 ul.nav.navbar-nav li a {
@@ -11,8 +13,9 @@ ul.nav.navbar-nav li a {
 }
 
 .contentContainer {
-    position:absolute;
+    position:relative;
     width:100%;
+    height:100%;
 }
 
 div.contentContainer footer {
@@ -207,8 +210,8 @@ div.link-text:hover{
 }
 
 .xmas {
-	height: 100%;
-	width: 100%;
+    width: 100%;
+	height: 1200px;
 	position: relative;
 }
 
@@ -216,72 +219,21 @@ div.link-text:hover{
 	width: 100%;
 	height: 100%;
 	position: relative;
-	z-index: 2;
-    overflow: auto;
+	z-index: 0;
 }
 
-.xmas .title {
-    position: absolute;
-    text-align: center;
-    z-index: 3;
-    width: 96%;
-    color: white;
+@media (max-height: 700px){
+    .xmas #xmasCanvas { 
+        height:1200px;
+    }
 }
-
-.xmas .xmas-title > div {
-	font-family: "微軟正黑體";
-	color: #ffffff;
-	font-size: 40px;
-	line-height: 0.5em;
-	margin-bottom: 5px;
-}
-
-.xmas .xmas-title > h2 {
-	margin-top: 10px;
-}
-
-.xmas .xmas-video {
-    width: 96%;
-    position: absolute;
-    top: 70px;
-    z-index: 5;
-    padding-left: 3px;
-}
-
-.xmas .description {
-    position: absolute;
-    bottom: 40px;
-    width: 100%;
-    z-index: 3;
-    text-align: center;
-}
-.xmas .description > div {
-	font-family: "quimby-mayoral", sans-serif;
-	color: #ffffff;
-	font-size: 40px;
-	margin-bottom: 10px;
-}
-
-.xmas .description .gc-link {
-    display: inline-block;
-    font-family: "brandon-grotesque", sans-serif;
-    font-size: 24px;
-    color: #ffffff;
-    transition: 400ms ease;
-    text-decoration: none;
-    text-transform: uppercase;
-}
-
-.xmas .description .gc-link:hover {
-	color: #1cff94;
-}
-
 
 /* Search Page*/
 .searchPageContainer {
     position:absolute;
     top:0px;
     width:100%;
+    height:100%;
 }
 
 /*Search Button CSS*/
@@ -338,74 +290,44 @@ div.link-text:hover{
 
 /********************/
 /*Search Result List CSS*/
-.featureBlock {
-  width: 700px;
-  height: 400px;
-  margin: 0 auto;
-  box-shadow: 5px 5px 50px 20px rgba(0,0,0,.5);
-  animation-name: fadeIn;
-  animation-duration: .8s;
+
+.articleContainer {
+    width: 45%;
+    margin: 0 auto;
+    overflow:auto;
 }
 
-.feature {
-  float: left;
-  color: white;
+.articleContainer > article {
+    background: rgb(174, 174, 174);
+    opacity: 0.7;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 20px;
 }
 
-.feature_aside {
-  width: 25%;
-  box-sizing: border-box;
+article > .video-title {
+    font-size:30px;
+    font-weight:700;
 }
 
-.feature_main {
-  width: 75%;
-  box-sizing: border-box;
+article > .row-container {
+    margin-top:5px;
+    overflow:hidden;
 }
 
-.feature-hd {
-  padding: 30px 20px;
-  height: 100px;
-  box-sizing: border-box;
+.row-container > .video-img {
+    width:150px;
+    float:left;
 }
 
-.feature-bd {
-  padding: 30px;
-  height: 300px;
-  box-sizing: border-box;
+.row-container > .video-content {
+    margin-left:160px;
+    font-size:20px;
 }
 
-.feature_main .feature-hd {
-  background: rgba(223,63,89,.8);
-  color: #f3beb4;
+.articleContainer > article:hover {
+    opacity:1;
+    background:#C2EAFF;
 }
 
-.feature_main .feature-bd {
-  background: rgba(220,122,60,.6);
-}
-
-.feature_aside .feature-hd {
-  background: rgba(42,38,105,.8);
-  color: #766A9C;
-  font-size: 24px;
-  font-family: Satisfy;
-}
-
-.feature_aside .feature-bd {
-  background: rgba(87,75,115,.6);
-}
-
-.globalNav > * > * {
-  color: white;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: all .5s linear;
-}
-
-.globalNav > * > *:hover {
-  text-decoration: underline;
-}
-
-.globalNav > *+*{
-  margin-top: 30px;
-}
 /************************/

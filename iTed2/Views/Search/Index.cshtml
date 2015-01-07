@@ -17,26 +17,44 @@
         </div>
         @if (ViewBag.TedList != null)
         {
-            foreach (var x in ViewBag.TedList)
-            {
+            <div class="articleContainer">
+                @foreach (var x in ViewBag.TedList)
+                {
+                @*<div class="featureBlock">
+                        <div class="feature feature_aside">
+                            <div class="feature-hd">
+
+                            </div>
+                        </div>
+                        <div class="feature feature_main">
+                            <div class="feature-hd">
+
+                            </div>
+                            <div class="feature-bd">
+
+                            </div>
+                        </div>
+                    </div>*@
+
                 <article>
-                    <h3>
+                    <div class="video-title">
                         <div id="txtVideoBtn" link="@Url.Action("Click", "Search", new { title = @x.Title, description = @x.Snippet, videoUrl = @x.Link, categoryId = @ViewBag.categoryId, thumbnailUrl = @x.Pagemap["cse_image"][0]["src"] })" class="link-text" style="color:black;" onclick="checkAP(this)">@x.Title</div>
-                    </h3>
-                    <div class="media">
-                        <div style="width:150px;float:left;">
+                    </div>
+                    <div class="row-container">
+                        <div class="video-img">
                             <div id="imgVideoBtn" link="@Url.Action("Click", "Search", new { title = @x.Title, description = @x.Snippet, videoUrl = @x.Link, categoryId = @ViewBag.categoryId, thumbnailUrl = @x.Pagemap["cse_image"][0]["src"] })" onclick="checkAP(this)" class="searchIMG">
                                 <img id="videoThumbnail" alt="" src=@x.Pagemap["cse_image"][0]["src"] style="cursor:pointer;">
                             </div>
                         </div>
-                        <div style="margin-left:160px;">
+                        <div class="video-content">
                             <div style="text-align:left;">
                                 @x.Snippet
                             </div>
                         </div>
                     </div>
                 </article>
-            }
+                }
+            </div>
         }
         else
         {
@@ -50,39 +68,11 @@
     </div>
 </div>
 @* 
-<div class="featureBlock">
-  <div class="feature feature_aside">
-    <div class="feature-hd">
-      <h2>Monica Vogler</h2>
-    </div>
-    <div class="feature-bd">
-      <ul class="globalNav">
-        <li><a href="">Home</a></li>
-        <li><a href="">Channels</a></li>
-        <li><a href="">Apps</a></li>
-        <li><a href="">Go Premium</a></li>
-        <li><a href="">Help</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="feature feature_main">
-    <div class="feature-hd">
-      <h2>Blog selection of the Week</h2>
-    </div>
-    <div class="feature-bd">
-      <h3>Blog Title</h3>
-    </div>
-  </div>
-</div>
 
  *@
 <script>
     var CategoryName = '@ViewBag.CategoryName';
     var isAuth = @User.Identity.IsAuthenticated;
-
-    $(function () {
-        $('#search-box').val("");
-    });
 
     function checkAP(e) {
         e=$(e);

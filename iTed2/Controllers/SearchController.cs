@@ -44,6 +44,7 @@ namespace iTed2.Controllers
                 ViewBag.categoryId = newCategory.Id;
                 ViewBag.TedList = result;
             }
+            ModelState.Clear();
             return View();
         }
 
