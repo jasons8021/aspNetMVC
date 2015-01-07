@@ -1,31 +1,25 @@
 ﻿@model IPagedList<iTed2.Models.VideoDescription>
 @using PagedList;
 @using PagedList.Mvc;
-<div>
     @if (Model.Count != 0)
     {
-        <div>
-            @foreach (var item in Model)
-            {
-                <article>
-                    <div class="media memberDescriptionDiv">
-                        <div class="img-userDiv">
-                            <img src="@item.iMember.Picture" alt="@item.iMember.Name" class="img-user" />
-                        </div>
-                        <div class="description-userDiv">
-                            <div>
-                                    @item.iMember.Name - @item.Date
-                            </div>
-                            <div>
-                                    @item.MemberDescription
-                            </div>
-                        </div>
+        foreach (var item in Model)
+        {
+            <article class="comment">
+                <div class="img-userDiv">
+                    <img src="@item.iMember.Picture" alt="@item.iMember.Name" class="img-user" />
+                </div>
+                <div class="description-userDiv">
+                    <div>
+                        @item.iMember.Name - @item.Date
                     </div>
-                </article>
-            }
+                    <div>
+                        @item.MemberDescription
+                    </div>
+                </div>
+            </article>
+        }
             <div class="pageList">
                 @Html.PagedListPager(Model, page => Url.Action("_DescriptionList", new { page = page, videoId = ViewBag.VideoId }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "descriptionLists" }))
             </div>
-        </div>
     }
-</div>

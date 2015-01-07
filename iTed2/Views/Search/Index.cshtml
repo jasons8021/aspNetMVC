@@ -20,22 +20,6 @@
             <div class="article-container">
                 @foreach (var x in ViewBag.TedList)
                 {
-                    @*<div class="featureBlock">
-                            <div class="feature feature_aside">
-                                <div class="feature-hd">
-
-                                </div>
-                            </div>
-                            <div class="feature feature_main">
-                                <div class="feature-hd">
-
-                                </div>
-                                <div class="feature-bd">
-
-                                </div>
-                            </div>
-                        </div>*@
-
                     <article>
                         <div class="video-title">
                             <div id="txtVideoBtn" link="@Url.Action("Click", "Search", new { title = @x.Title, description = @x.Snippet, videoUrl = @x.Link, categoryId = @ViewBag.categoryId, thumbnailUrl = @x.Pagemap["cse_image"][0]["src"] })" class="link-text" style="color:black;" onclick="checkAP(this)">@x.Title</div>
@@ -47,9 +31,7 @@
                                 </div>
                             </div>
                             <div class="video-content">
-                                <div style="text-align:left;">
-                                    @x.Snippet
-                                </div>
+                                @x.Snippet
                             </div>
                         </div>
                     </article>

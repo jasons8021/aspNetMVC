@@ -52,27 +52,6 @@ div.contentContainer footer {
     color: #999;
 }
 
-.memberDescriptionDiv {
-    background-color: #EEEEEE;
-    margin: 20px;
-    width: 96%;
-}
-
-.description-userDiv {
-    font-family: 微軟正黑體;
-    margin-left: 65px;
-    margin-top: 5px;
-}
-
-div.link-text{
-    color:#000;
-    cursor:pointer;
-}
-
-div.link-text:hover{
-    color:rgba(56, 52, 52, 0.54);
-    text-decoration:underline;
-}
 .row.card-container{
     position:absolute;
     top: 20px;
@@ -136,6 +115,7 @@ div.link-text:hover{
     float:left;
     width:100%;
     color:#686868;
+    text-align:left;
 }
 
 .card > .video-content:hover{
@@ -208,7 +188,6 @@ div.link-text:hover{
     top:0px;
     width:100%;
     height:100%;
-    overflow:auto;
 }
 
 /*Search Button CSS*/
@@ -269,6 +248,7 @@ div.link-text:hover{
 .article-container {
     width: 45%;
     margin: 0 auto;
+    overflow:auto;
 }
 
 .article-container > article {
@@ -282,6 +262,7 @@ div.link-text:hover{
 article > .video-title {
     font-size:30px;
     font-weight:700;
+    cursor:pointer;
 }
 
 article > .row-container {
@@ -410,9 +391,36 @@ div.unit > img.pic2.curr {
 	border-bottom: 1px solid;
 }
 
+/**************/
+/*Comment List*/
 
 .comment-list-container {
     width: 55%;
     margin:0px auto;
     overflow:auto;
 }
+
+.comment-list-container > article {
+    background: #EEE;
+    margin: 20px;
+    width: 96%;
+}
+
+.img-user {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+}
+
+.img-userDiv {
+    float: left; 
+    margin: 5px
+}
+
+.description-userDiv {
+    font-family: 微軟正黑體;
+    margin-left: 65px;
+    margin-top: 5px;
+}
+
+/**************/
