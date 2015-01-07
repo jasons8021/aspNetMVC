@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "上映影片 : " + ViewBag.title;
 }
-<div class="deatail-container">
+<div class="detail-container">
     @if (ViewBag.videoUrl != null)
     {
         <div class="title">
@@ -19,34 +19,32 @@
                 @ViewBag.description
             </div>
             <div class="unit">
-                <img src="~/Image/star0.png" class="pic1">
+                <img src="~/Image/star1.png" class="pic1">
                 <img src="~/Image/star2.png" class="pic2">
             </div>
             <div style="clear:both;"></div>
             <hr />
         </div>
-        @*using (Ajax.BeginForm("_DescriptionList", "Detail", null, new AjaxOptions { UpdateTargetId = "descriptionLists", HttpMethod = "Post" }))
-            {
-                @Html.AntiForgeryToken()
-                <input type="hidden" name="Id" value='@ViewBag.videoId'>
-                <input type="hidden" name="Title" value='@ViewBag.title'>
-                <input type="hidden" name="Description" value='@ViewBag.description'>
-                <input type="hidden" name="VideoUrl" value='@ViewBag.videoUrl'>
-                <input id="memberDescription" type="hidden" name="memberDescription">
-                <div style="width:100%;margin:auto;">
-                    <div style="width:100%">
-                        @Html.TextArea("memberDescriptionText", null, new { placeholder = "請輸入評語", style = "width:100%;" })
-                        <div style="float: right; margin-right: 5px; margin-top: 20px;">
-                            <button id="submitDescriptionBtn" type="submit" class="btn btn-primary">上傳評語</button>
-                        </div>
-                        <hr />
-                    </div>
+        using (Ajax.BeginForm("_DescriptionList", "Detail", null, new AjaxOptions { UpdateTargetId = "descriptionLists", HttpMethod = "Post" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="Id" value='@ViewBag.videoId'>
+            <input type="hidden" name="Title" value='@ViewBag.title'>
+            <input type="hidden" name="Description" value='@ViewBag.description'>
+            <input type="hidden" name="VideoUrl" value='@ViewBag.videoUrl'>
+            <input id="memberDescription" type="hidden" name="memberDescription">
+            <div class="comment-container">
+                @Html.TextArea("memberDescriptionText", null, new { placeholder = "請輸入評語", @class = "comment-textbox" })
+                <div class="submit-btn">
+                    <button id="submitDescriptionBtn" type="submit" class="action-button shadow animate green">上傳評語</button>
                 </div>
-                @Html.ValidationMessageFor(model => model.FirstOrDefault().MemberDescription, "", new { @class = "text-danger" })
-            }
-            <div id="descriptionLists">
-                @Html.Action("_DescriptionList", "Detail", new { videoId = @ViewBag.videoId });
-            </div>*@
+                <hr />
+            </div>
+            @Html.ValidationMessageFor(model => model.FirstOrDefault().MemberDescription, "", new { @class = "text-danger" })
+        }
+        <div id="descriptionLists" class="comment-list-container">
+            @Html.Action("_DescriptionList", "Detail", new { videoId = @ViewBag.videoId });
+        </div>
     }
 </div>
 
