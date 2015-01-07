@@ -64,7 +64,7 @@
 <script>
     function changeRole(thisElement, AspnetUserId) {
         $.ajax({
-            url: 'https://localhost:44301/SiteRole/ChangeRole',
+            url: 'https://iweb.csie.ntut.edu.tw/paas17/SiteRole/ChangeRole',
             type: 'GET',
             data: { role: thisElement.value, aspNetUserId: AspnetUserId },
             success: function () {

@@ -50,14 +50,14 @@ function Log_Out() {
         }
     });
 
-    javascript: document.location.href = 'https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://localhost:44301/Account/LogOff';
+    javascript: document.location.href = 'https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://iweb.csie.ntut.edu.tw/paas17/Account/LogOff';
 }
 
 function addOneAp(id) {
     if (parseInt(apValue) < parseInt(maxAp)) {
         $.ajax({
             type: 'GET',
-            url: 'https://localhost:44301/api/iTed2/addOneAp?id=' + id,
+            url: 'https://iweb.csie.ntut.edu.tw/paas17/api/iTed2/addOneAp?id=' + id,
             contentType: 'application/json',
             success: function (response) {
                 apValue++;
@@ -76,7 +76,7 @@ function getUserInfo(id) {
     timerState = "init";
     $.ajax({
         type: 'GET',
-        url: 'https://localhost:44301/api/iTed2/getUser?id=' + id,
+        url: 'https://iweb.csie.ntut.edu.tw/paas17/api/iTed2/getUser?id=' + id,
         contentType: 'application/json',
         success: function (response) {
             timerState = "success";

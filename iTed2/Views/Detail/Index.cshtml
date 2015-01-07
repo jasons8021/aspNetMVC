@@ -96,7 +96,7 @@
     function removeLikeInDB(call) {
         $.ajax({
             type: 'GET',
-            url: 'https://localhost:44301/api/iTed2/removeFavorite?aspId=' + '@User.Identity.GetUserId()' + '&videoId=' + '@ViewBag.videoId',
+            url: 'https://iweb.csie.ntut.edu.tw/paas17/api/iTed2/removeFavorite?aspId=' + '@User.Identity.GetUserId()' + '&videoId=' + '@ViewBag.videoId',
             contentType: 'application/json',
             success: function (response) {
                 
@@ -112,7 +112,7 @@
     function insertLikeInDB(call) {
         $.ajax({
             type: 'GET',
-            url: 'https://localhost:44301/api/iTed2/addFavorite?aspId=' + '@User.Identity.GetUserId()' + '&videoId=' + '@ViewBag.videoId',
+            url: 'https://iweb.csie.ntut.edu.tw/paas17/api/iTed2/addFavorite?aspId=' + '@User.Identity.GetUserId()' + '&videoId=' + '@ViewBag.videoId',
             contentType: 'application/json',
             success: function (response) {
                
@@ -129,7 +129,7 @@
     function checkMyFavorite(call1, call2, call3) {
         $.ajax({
             type: 'GET',
-            url: 'https://localhost:44301/api/iTed2/checkFavorite?aspId=' + '@User.Identity.GetUserId()' + '&videoId=' + '@ViewBag.videoId',
+            url: 'https://iweb.csie.ntut.edu.tw/paas17/api/iTed2/checkFavorite?aspId=' + '@User.Identity.GetUserId()' + '&videoId=' + '@ViewBag.videoId',
             contentType: 'application/json',
             success: function (response) {
                 if ((typeof (call1) != "undefined") && (response == false)) {

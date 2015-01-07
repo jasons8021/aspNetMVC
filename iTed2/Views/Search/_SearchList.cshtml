@@ -74,7 +74,7 @@ else
     function getCurrentAP(call) {
         $.ajax({
             type: 'GET',
-            url: 'https://localhost:44301/api/iTed2/getCurrentAP?aspId=' + '@User.Identity.GetUserId()',
+            url: 'https://iweb.csie.ntut.edu.tw/paas17/api/iTed2/getCurrentAP?aspId=' + '@User.Identity.GetUserId()',
             contentType: 'application/json',
             success: function (response) {
                 if ((typeof (call) != "undefined")) {
@@ -91,7 +91,7 @@ else
     function getIsAuth(call) {
         $.ajax({
             type: 'GET',
-            url: 'https://localhost:44301/api/iTed2/getIsAuth',
+            url: 'https://iweb.csie.ntut.edu.tw/paas17/api/iTed2/getIsAuth',
             contentType: 'application/json',
             success: function (response) {
                 if (response) {
