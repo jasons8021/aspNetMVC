@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace iTed2.Controllers
 {
@@ -127,6 +129,67 @@ namespace iTed2.Controllers
             //System.Diagnostics.Debug.WriteLine(User.Identity.IsAuthenticated);
             bool isa = User.Identity.IsAuthenticated;
             return isa;
+        }
+
+        [Route("api/iTed2/GetMyFavoriteList")]
+        [Authorize]
+        [HttpGet]
+        public Dictionary<string, MyFavorite[]> GetMyFavoriteList()
+        {
+            iTed2Service service = new iTed2Service();
+
+            var userId = User.Identity.GetUserId();
+            int memberId = service.GetMemberByAspId(userId).Id;
+
+            return service.GetMyFavoriteList(memberId).ToLookup(m => m.Video.Category).ToDictionary(m => m.Key.CategoryName, m => m.ToArray());
+        }
+
+        [Route("api/iTed2/GetMyInfo")]
+        [Authorize]
+        [HttpGet]
+        public iMember getMyInfo()
+        {
+            iTed2Service service = new iTed2Service();
+
+            var userId = User.Identity.GetUserId();
+
+            return service.GetMemberByAspId(userId);
+        }
+
+        [Route("api/iTed2/MobileAddOneAp")]
+        [Authorize]
+        [HttpGet]
+        public int mobileAddOneAp()
+        {
+            iTed2Service service = new iTed2Service();
+
+            var userId = User.Identity.GetUserId();
+
+            return addOneAP(userId);
+        }
+
+        [Route("api/iTed2/MobileGetUser")]
+        [Authorize]
+        [HttpGet]
+        public List<String> mobileGetUser()
+        {
+            iTed2Service service = new iTed2Service();
+
+            var userId = User.Identity.GetUserId();
+
+            return GetUser(userId);
+        }
+
+        [Route("api/iTed2/MobileConsume")]
+        [Authorize]
+        [HttpGet]
+        public bool mobileConsume()
+        {
+            iTed2Service service = new iTed2Service();
+
+            var userId = User.Identity.GetUserId();
+            iMember member = service.GetMemberByAspId(userId);
+            return service.ConsumeAp(member);
         }
     }
 }

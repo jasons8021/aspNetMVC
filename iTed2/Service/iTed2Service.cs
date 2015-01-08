@@ -190,13 +190,18 @@ namespace iTed2.Service
             }
         }
 
-        public void ConsumeAp(iMember member)
+        public bool ConsumeAp(iMember member)
         {
             if (member.APValue >= videoAP)
             {
                 //System.Diagnostics.Debug.WriteLine("ConsumeAp : " + videoAP);
                 member.APValue -= videoAP;
                 db.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
