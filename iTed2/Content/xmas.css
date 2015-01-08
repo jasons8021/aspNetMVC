@@ -508,3 +508,11 @@ a.treeView-title {
     text-align: center;
 }
 /**************/
+
+.account-container {
+    position: absolute;
+    width: 40%;
+    top: 40px;
+    left: 25%;
+    color: #fff;
+}
